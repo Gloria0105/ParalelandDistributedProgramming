@@ -1,0 +1,70 @@
+
+
+Problem statement:
+	Supermarket inventory:
+There are several types of products, each having a known, constant, unit price. In the begining, we know the quantity of each product.
+
+We must keep track of the quantity of each product, the amount of money (initially zero), and the list of bills, corresponding to sales.
+Each bill is a list of items and quantities sold in a single operation, and their total price.
+
+We have sale operations running concurrently, on several threads. Each sale decreases the amounts of available products (corresponding to
+the sold items), increases the amount of money, and adds a bill to a record of all sales.
+
+From time to time, as well as at the end, an inventory check operation shall be run. It shall check that all the sold products and all the
+money are justified by the recorded bills.
+
+
+Programming language: Java
+Environment: IntelliJ IDEA 2019.3.2 (Ultimate Edition)
+Runtime version: 11.0.5+10-b520.30 amd64
+Windows 10 10.0
+Cores: 8
+Additional Frameworks: None
+
+
+Program Description:
+	A fixed number of threads are trying to buy a fixed/random number of differrent products and differrent quantities. At time shall be 
+some verification made to see if the number of products buyed are maching with the products extracted from the inventory. Also a final check
+needs to be made in order to see if the balance is corect.
+
+
+
+Tests:
+	First run of the tests:
+		First test:
+			-number of products: 101
+			-number of threads: 10
+			-time for performing: 0.064
+			
+		Second test:
+			-number of products: 1001
+			-number of threads: 90
+			-time for performing: 0.128
+
+		Third test:
+			-number of products: 10001
+			-number of threads: 900
+			-time for performing: 1.216
+			
+	Second run of the tests:
+		First test:
+			-number of products: 101
+			-number of threads: 10
+			-time for performing: 0.032
+			
+		Second test:
+			-number of products: 1001
+			-number of threads: 90
+			-time for performing: 0.16
+
+		Third test:
+			-number of products: 10001
+			-number of threads: 900
+			-time for performing: 1.184
+
+After the second run of the test we can see that the time results are almost consistent.
+As we can see the differrence from 10 threads to 90 threads is almost insesisable, but the real difference of 1 second is beetween 
+90 and 900.
+
+			
+		
