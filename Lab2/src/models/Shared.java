@@ -1,6 +1,8 @@
 package models;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -8,73 +10,64 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Shared {
 
     Lock mutex = new ReentrantLock();
-    Queue<Integer> products = new LinkedList<>();
-    HashMap<Integer, Integer> listOfPairs;
+    LinkedList<Integer> products = new LinkedList<>();
+    List<Integer> list1;
+    List<Integer> list2;
     List<Integer> sums = new ArrayList<>();
     Integer sum = 0;
 
     private final Condition bufferNotFull = mutex.newCondition();
     private final Condition bufferNotEmpty = mutex.newCondition();
 
-    public Shared(HashMap<Integer, Integer> listOfPairs) {
-        this.listOfPairs = listOfPairs;
+    public Shared(List<Integer> list1, List<Integer> list2) {
+
+        this.list1 = list1;
+        this.list2 = list2;
     }
 
     int capacity = 6;
 
 
     // Function called by producer thread
-    public void produce() throws InterruptedException {
+    public void produce(Integer product) throws InterruptedException {
 
         mutex.lock();
         try {
-            if (products.size() == capacity) {
+            while (products.size() == capacity) {
                 bufferNotEmpty.await();
             }
 
-            for (Map.Entry<Integer, Integer> a : listOfPairs.entrySet()) {
-                Integer value = a.getValue();
-                Integer key = a.getKey();
-                Integer product = value * key;
-                products.offer(product);
-
+            boolean isAdded = products.add(product);
+            if (isAdded) {
                 System.out.println("Producer produced-"
                         + product);
                 bufferNotFull.signalAll();
-
             }
+
         } finally {
             mutex.unlock();
 
         }
-        // makes the working of program easier
-        // to  understand
-
-
     }
 
-    public void consume() throws InterruptedException {
+    public Integer consume() throws InterruptedException {
         mutex.lock();
         try {
 
             while (products.size() == 0) {
                 bufferNotFull.await();
             }
-            while (!products.isEmpty()) {
-                Integer value = products.poll();
+                Integer value = products.removeFirst();
                 if (value != null) {
-                    sum += value;
-                    sums.add(sum);
-                    System.out.println("Consumer consumed-"
-                            + sum);
-                    bufferNotEmpty.signalAll();
+                    return value;
                 }
-            }
+                bufferNotEmpty.signalAll();
+
 
 
         } finally {
             mutex.unlock();
         }
-
+        return null;
     }
 }
