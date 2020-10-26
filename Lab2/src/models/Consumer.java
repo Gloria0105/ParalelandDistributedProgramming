@@ -18,7 +18,7 @@ public class Consumer extends Thread{
 						sum+=value;
 						System.out.println("Consumer consumed - "+sum);
 						noOfValues-=1;
-//						Thread.sleep(200);
+						Thread.sleep(200);
 
 				}
 				catch (InterruptedException e) {

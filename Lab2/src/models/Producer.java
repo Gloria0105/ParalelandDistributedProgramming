@@ -22,7 +22,7 @@ public class Producer extends Thread {
 				Integer value2 = list2.get(i);
 				Integer product = value1 * value2;
 				shared.produce(product);
-//				Thread.sleep(200);
+				Thread.sleep(200);
 
 			}
 
