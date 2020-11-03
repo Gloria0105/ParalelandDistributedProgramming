@@ -1,0 +1,85 @@
+Radu Ana-Maria 936/2
+
+
+
+                                    Parallel and distributed Programming
+
+
+           Requirement:
+                Divide a simple task between threads. The task can easily be divided in sub-tasks requiring no
+                cooperation at all. See the caching effects, and the costs of creating threads and of switching between
+                threads.
+
+
+                Write several programs to compute the product of two matrices.
+
+                Have a function that computes a single element of the resulting matrix.
+
+                Have a second function whose each call will constitute a parallel task (that is, this function will be
+                called on several threads in parallel). This function will call the above one several times consecutively
+                to compute several elements of the resulting matrix. Consider the following ways of splitting the work
+                betweeb tasks (for the examples, consider the final matrix being 9x9 and the work split into 4 tasks):
+
+                1. Each task computes consecutive elements, going row after row. So, task 0 computes rows 0 and 1, plus
+                elements 0-1 of row 2 (20 elements in total); task 1 computes the remainder of row 2, row 3, and elements
+                0-3 of row 4 (20 elements); task 2 computes the remainder of row 4, row 5, and elements 0-5 of row 6 (20
+                elements); finally, task 3 computes the remaining elements (21 elements).
+                2. Each task computes consecutive elements, going column after column. This is like the previous example,
+                but interchanging the rows with the columns: task 0 takes columns 0 and 1, plus elements 0 and 1 from column
+                2, and so on.
+                3. Each task takes every k-th element (where k is the number of tasks), going row by row. So, task 0 takes
+                elements (0,0), (0,4), (0,8), (1,3), (1,7), (2,2), (2,6), (3,1), (3,5), (4,0), etc.
+
+
+
+           Approach:
+                I made two projects, one for thread pool approach and one for the threads approach. The main idea is that
+                the thread pool approach uses a Multiplication class that simply implements the java class Runnable and all
+                all the runnables(threads) are added in the thread pool and executed at a time. On the other approach
+                I used a Multiplication class that implements Callable (a java class) and uses mutexes to lock the matrix
+                when the result is computed, they are started one after the other.
+
+
+
+
+            Programming language: Java
+            Environment: IntelliJ IDEA 2019.3.2 (Ultimate Edition)
+            Runtime version: 11.0.5+10-b520.30 amd64
+            Windows 10 10.0
+            Cores: 8
+            Additional Frameworks: None
+
+
+           Test results:
+
+                1. Threads (Java future task):
+                    - 4*4 matrix, 4 threads, result by rows
+                        Execution time: 0.2
+                    - 4*4 matrix, 4 threads, result by columns
+                        Execution time: 0.2
+                    - 4*4 matrix, 4 threads, result by rows
+                        Execution time: 0.1
+
+                2. Thread pool:
+                    - 4*4 matrix, 4 threads, result by rows
+                         Execution time: 0.1
+                    - 4*4 matrix, 4 threads, result by columns
+                         Execution time: 0.1
+                    - 4*4 matrix, 4 threads, result by rows
+                         Execution time: 0.0
+
+                1. Threads (Java future task):
+                    - 6*6 matrix, 6 threads, result by rows
+                          Execution time: 0.5
+                    - 6*6 matrix, 6 threads, result by columns
+                          Execution time: 0.5
+                    - 6*6 matrix, 6 threads, result by rows
+                          Execution time: 0.3
+
+                2. Thread pool:
+                    - 6*6 matrix, 6 threads, result by rows
+                          Execution time: 0.4
+                    - 6*6 matrix, 6 threads, result by columns
+                          Execution time: 0.5
+                    - 6*6 matrix, 6 threads, result by rows
+                          Execution time: 0.2
