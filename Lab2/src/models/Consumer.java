@@ -16,7 +16,7 @@ public class Consumer extends Thread{
 				try {
 						Integer value = shared.consume();
 						sum+=value;
-						System.out.println("Consumer consumed - "+sum);
+						System.out.println("Consumer consumed- "+sum);
 						noOfValues-=1;
 						Thread.sleep(200);
 

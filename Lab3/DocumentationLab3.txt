@@ -57,7 +57,7 @@ Radu Ana-Maria 936/2
                         Execution time: 0.2
                     - 4*4 matrix, 4 threads, result by columns
                         Execution time: 0.2
-                    - 4*4 matrix, 4 threads, result by rows
+                    - 4*4 matrix, 4 threads, result by k
                         Execution time: 0.1
 
                 2. Thread pool:

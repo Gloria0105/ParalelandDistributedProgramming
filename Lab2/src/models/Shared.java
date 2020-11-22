@@ -64,7 +64,6 @@ public class Shared {
                 bufferNotEmpty.signalAll();
 
 
-
         } finally {
             mutex.unlock();
         }
