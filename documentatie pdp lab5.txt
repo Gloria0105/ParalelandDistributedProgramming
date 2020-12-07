@@ -1,0 +1,44 @@
+Lab 6 - Parallelizing techniques
+
+1. Goal
+    The goal of this lab is to implement a simple but non-trivial parallel algorithm.
+
+2. Requirement
+    Perform the multiplication of 2 polynomials. Use both the regular O(n2) algorithm and the Karatsuba algorithm,
+    and each in both the sequential form and a parallelized form. Compare the 4 variants.
+
+3. Computer Specification
+• CPU: Intel Core i7-0750H, 2.60GHz
+• RAM: 16 GB
+• System type: 64-bit
+
+4 Short Description of the Implementation
+    Algorithm - Backtracking:
+    • Regular polynomial multiplication
+    • Karatsuba algorithm
+    Parallelization - Used Java’s ThreadPool combined with custom Runnable objects to achieve parallelization
+
+4.1 Regular polynomial multiplication
+    • Complexity: O(n2)
+    • Step 1: Distribute each term of the first polynomial to every term of the
+    second polynomial. Remember that when you multiply two terms together
+    you must multiply the coefficient (numbers) and add the exponents
+    • Step 2: Combine like terms (if you can)
+
+4.2 Karatsuba algorithm
+    • Complexity: O(nlog2 3)
+    • A fast multiplication algorithm that uses a divide and conquer approach to multiply two numbers.
+
+5. Performance Tests
+    note: by level ’x’ i am referring that the algorithms were used to multiply 2 polynomials of rank x * 100,with
+    coefficients being random numbers of x *10 digits.
+
+
+    Test 1:
+        Regular sequential: lvl 1 -> 72ms, lvl 5 -> 348ms, lvl 8->1119ms
+        Karatsuba sequential: lvl 1 -> 29ms, lvl 5 -> 190s, lvl 8->507ms
+
+
+6. Conclusion
+    • For the most part, the parallelized versions of the algorithms run faster.
+    • Karatsuba’s is clearly superior to the regular algorithm and for large numbers it would be preferred
