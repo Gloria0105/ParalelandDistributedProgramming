@@ -1,7 +1,9 @@
+import java.util.concurrent.ExecutionException;
+
 public class Main {
-     public static void main(String[] args) {
-         Polynomial p = new Polynomial(8000);
-         Polynomial q = new Polynomial(8000);
+     public static void main(String[] args) throws InterruptedException, ExecutionException {
+         Polynomial polynomial1 = new Polynomial(5000);
+         Polynomial polynomial2 = new Polynomial(5000);
 
 //         System.out.println("pol p:" + p);
 //         System.out.println("\n");
@@ -11,15 +13,29 @@ public class Main {
          //Simple multiplication sequential
          System.out.println("Simple sequential multiplication of polynomials: ");
          long startTime = System.currentTimeMillis();
-         PolynomialMultiplication.multiplicationSequential(p, q);
+         PolynomialMultiplication.multiplicationSequential(polynomial1, polynomial2);
          long endTime = System.currentTimeMillis();
          System.out.println("Execution time : " + (endTime - startTime) + " ms"+"\n");
 
          //Karatsuba multiplication sequential
          System.out.println("Karatsuba sequential multiplication of polynomials: ");
          long startTime1 = System.currentTimeMillis();
-         PolynomialMultiplication.multiplicationKaratsubaSequential(p, q);
+         PolynomialMultiplication.multiplicationKaratsubaSequential(polynomial1, polynomial2);
          long endTime1 = System.currentTimeMillis();
-         System.out.println("Execution time : " + (endTime1 - startTime1) + " ms");
+         System.out.println("Execution time : " + (endTime1 - startTime1) + " ms"+"\n");
+
+         //Simple multiplication parallelized
+         System.out.println("Simple sequential multiplication of polynomials: ");
+         long startTime2 = System.currentTimeMillis();
+         PolynomialMultiplication.multiplicationParallelized(polynomial1, polynomial2,4);
+         long endTime2 = System.currentTimeMillis();
+         System.out.println("Execution time : " + (endTime2 - startTime2) + " ms"+"\n");
+
+         //Karatsuba multiplication parallelized
+         System.out.println("Karatsuba sequential multiplication of polynomials: ");
+         long startTime3 = System.currentTimeMillis();
+         PolynomialMultiplication.multiplicationKaratsubaParallelized(polynomial1, polynomial2,4);
+         long endTime3 = System.currentTimeMillis();
+         System.out.println("Execution time : " + (endTime3 - startTime3) + " ms");
     }
 }

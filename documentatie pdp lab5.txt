@@ -35,8 +35,10 @@ Lab 6 - Parallelizing techniques
 
 
     Test 1:
-        Regular sequential: lvl 1 -> 72ms, lvl 5 -> 348ms, lvl 8->1119ms
-        Karatsuba sequential: lvl 1 -> 29ms, lvl 5 -> 190s, lvl 8->507ms
+        Regular sequential: lvl 1 -> 72ms, lvl 5 -> 272ms, lvl 8->570ms
+        Karatsuba sequential: lvl 1 -> 29ms, lvl 5 -> 190s, lvl 8->480ms
+        Regular parallelized: lvl 1 -> 28ms, lvl 5 -> 142ms, lvl 8->307ms
+        Karatsuba parallelized: lvl 1 -> 29ms, lvl 5 -> 126s, lvl 8->267ms
 
 
 6. Conclusion
