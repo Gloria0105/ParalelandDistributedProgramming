@@ -1,0 +1,39 @@
+Lab 6 - Parallelizing techniques
+
+1. Goal
+    The goal of this lab is to implement a simple but non-trivial parallel algorithm.
+
+2. Requirement
+        Given a directed graph, find a Hamiltonian cycle, if one exists. Use multiple
+    threads to parallelize the search.
+
+3. Computer Specification
+• CPU: Intel Core i7-0750H, 2.60GHz
+• RAM: 16 GB
+• System type: 64-bit
+
+4. Short Description of the Implementation
+    Algorithm - Backtracking:
+    • generate all possible paths starting from eah node, and check each one if it is a
+    Hamiltonian cycle.
+    • in parallelized version we have one thread executing the backtrack for one node
+    Parallelization - Used the Thread class along with the ArrayBlockingQueue
+
+
+5. Performance Tests
+    regular linear alg:
+        Level 1 : 2ms
+        Level 50 : 82ms
+        Level 100 : 400ms
+
+    parallelized  alg:
+            Level 1 : 0ms
+            Level 50 : 35ms
+            Level 100 : 100ms
+
+
+
+6. Conclusion
+    Parallelization is the best method when using backtracking.
+    It is almost 3 times faster.
+

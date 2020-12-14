@@ -1,4 +1,4 @@
-Lab 6 - Parallelizing techniques
+Lab 5 - Parallelizing techniques
 
 1. Goal
     The goal of this lab is to implement a simple but non-trivial parallel algorithm.
@@ -12,7 +12,7 @@ Lab 6 - Parallelizing techniques
 • RAM: 16 GB
 • System type: 64-bit
 
-4 Short Description of the Implementation
+4. Short Description of the Implementation
     Algorithm - Backtracking:
     • Regular polynomial multiplication
     • Karatsuba algorithm
